@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <!-- This is ONLY an aggregator -->
+    <groupId>com.demo</groupId>
+    <artifactId>demo-spring-boot-infra</artifactId>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+    <name>Demo Spring Boot Infrastructure</name>
+    <description>
+        Shared Spring Boot infrastructure including a dependency BOM
+        and a base starter for internal services.
+    </description>
+
+    <!-- Modules in this repo -->
+    <modules>
+        <module>demo-dependencies-bom</module>
+        <module>demo-base-spring-boot-starter</module>
+    </modules>
+
+</project>
