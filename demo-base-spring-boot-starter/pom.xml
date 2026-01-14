@@ -4,10 +4,17 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-  <groupId>io.github.mybsam12138</groupId>
+  <parent>
+    <groupId>io.github.mybsam12138</groupId>
+    <artifactId>demo-parent</artifactId>
+    <version>1.0.1</version>
+  </parent>
+
+
   <artifactId>demo-base-spring-boot-starter</artifactId>
-  <version>1.0.2</version>
+  <version>1.0.3</version>
   <packaging>jar</packaging>
+
 
   <distributionManagement>
     <repository>
@@ -16,18 +23,6 @@
       <url>https://maven.pkg.github.com/mybsam12138/demo-spring-boot-infra</url>
     </repository>
   </distributionManagement>
-
-  <dependencyManagement>
-    <dependencies>
-      <dependency>
-        <groupId>io.github.mybsam12138</groupId>
-        <artifactId>demo-dependencies</artifactId>
-        <version>1.0.1</version>
-        <type>pom</type>
-        <scope>import</scope>
-      </dependency>
-    </dependencies>
-  </dependencyManagement>
 
   <dependencies>
     <dependency>

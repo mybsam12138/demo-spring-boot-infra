@@ -20,7 +20,7 @@
 
     <!-- Modules in this repo -->
     <modules>
-        <module>demo-dependencies-bom</module>
+        <module>demo-parent</module>
         <module>demo-base-spring-boot-starter</module>
     </modules>
 
