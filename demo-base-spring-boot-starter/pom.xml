@@ -13,7 +13,7 @@
 
 
   <artifactId>demo-base-spring-boot-starter</artifactId>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <packaging>jar</packaging>
 
 
@@ -41,10 +41,6 @@
       <artifactId>spring-boot-configuration-processor</artifactId>
     </dependency>
 
-    <dependency>
-      <groupId>me.zhyd.oauth</groupId>
-      <artifactId>JustAuth</artifactId>
-    </dependency>
     <!-- Redis -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
