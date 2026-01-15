@@ -9,7 +9,7 @@
     <!-- ===== GAV ===== -->
     <groupId>io.github.mybsam12138</groupId>
     <artifactId>demo-parent</artifactId>
-    <version>1.0.2</version>
+    <version>1.0.3</version>
     <packaging>pom</packaging>
 
     <name>Demo Parent</name>
@@ -28,11 +28,12 @@
         <spring-boot.version>3.3.6</spring-boot.version>
 
         <!-- Infra / Core libs -->
-        <mybatis-flex.version>1.11.5</mybatis-flex.version>
+        <mybatis-flex.spring-boot.stater.version>1.11.5</mybatis-flex.spring-boot.stater.version>
         <sa-token.version>1.38.0</sa-token.version>
         <justauth.version>1.16.6</justauth.version>
         <springdoc.version>2.6.0</springdoc.version>
-
+        <justauth.spring-boot.starter>1.0.17</justauth.spring-boot.starter>
+        <demo.base.spring-boot.starter>1.0.3</demo.base.spring-boot.starter>
         <!-- Build plugins -->
         <maven-compiler-plugin.version>3.11.0</maven-compiler-plugin.version>
     </properties>

@@ -8,12 +8,11 @@
     <groupId>io.github.mybsam12138</groupId>
     <artifactId>demo-parent</artifactId>
     <version>1.0.2</version>
-    <relativePath>../demo-parent/pom.xml</relativePath>
   </parent>
 
 
   <artifactId>demo-base-spring-boot-starter</artifactId>
-  <version>1.0.4</version>
+  <version>1.0.5</version>
   <packaging>jar</packaging>
 
 
