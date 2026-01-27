@@ -5,6 +5,8 @@ public interface ErrorCode {
     /** Stable error code, e.g. USER_001 */
     int code();
 
+    String i18nKey();
+
     /** Default human-readable message */
-    String message();
+    String defaultMessage();
 }

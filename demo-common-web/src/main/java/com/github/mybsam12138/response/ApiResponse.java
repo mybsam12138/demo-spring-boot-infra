@@ -33,7 +33,7 @@ public class ApiResponse<T> {
     public static ApiResponse<Void> error(ErrorCode errorCode) {
         return new ApiResponse<>(
                 errorCode.code(),
-                errorCode.message(),
+                errorCode.defaultMessage(),
                 null
         );
     }
