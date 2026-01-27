@@ -22,7 +22,7 @@
     <modules>
         <module>demo-parent</module>
         <module>demo-base-spring-boot-starter</module>
-        <module>demo-core</module>
+        <module>demo-common-web</module>
     </modules>
 
 </project>

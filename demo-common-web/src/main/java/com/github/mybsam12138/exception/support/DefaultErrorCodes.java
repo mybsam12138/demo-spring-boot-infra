@@ -10,6 +10,8 @@ public enum DefaultErrorCodes implements ErrorCode {
     SYSTEM_ERROR(500, "System error"),
     UNKNOWN_ERROR(501, "Unknown error"),
 
+
+
     /* =========================
      * 1000–1999 : Web / Request / Validation
      * ========================= */
@@ -26,6 +28,7 @@ public enum DefaultErrorCodes implements ErrorCode {
     FORBIDDEN(2001, "Forbidden"),
     TOKEN_EXPIRED(2002, "Token expired"),
     TOKEN_INVALID(2003, "Invalid token"),
+    MISS_USER_ID(2004,"Missing user id"),
 
     /* =========================
      * 3000–3999 : Infrastructure
