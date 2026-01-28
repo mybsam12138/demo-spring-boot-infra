@@ -16,7 +16,7 @@ public class ErrorCodeView {
     public static ErrorCodeView from(ErrorCode errorCode) {
         ErrorCodeView view = new ErrorCodeView();
         view.code = errorCode.code();
-        view.message = errorCode.message();
+        view.message = errorCode.defaultMessage();
         return view;
     }
 
