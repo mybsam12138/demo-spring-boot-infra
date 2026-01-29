@@ -14,11 +14,7 @@ public class ErrorMessageResolver {
 
     public String resolve(ErrorCode errorCode, Object... args) {
         try {
-            return messageSource.getMessage(
-                    errorCode.i18nKey(),
-                    args,
-                    LocaleContextHolder.getLocale()
-            );
+            return messageSource.getMessage(errorCode.i18nKey(), args, LocaleContextHolder.getLocale());
         } catch (Exception ex) {
             // absolute fallback
             return errorCode.defaultMessage();

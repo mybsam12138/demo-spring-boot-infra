@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+
+    <!-- ========================= -->
+    <!-- 1. Spring properties -->
+    <!-- ========================= -->
+    <springProperty scope="context"
+                    name="APP_NAME"
+                    source="spring.application.name"
+                    defaultValue="demo-app"/>
+
+    <springProperty scope="context"
+                    name="ACTIVE_PROFILE"
+                    source="spring.profiles.active"
+                    defaultValue="default"/>
+
+    <!-- ========================= -->
+    <!-- 2. Log pattern -->
+    <!-- ========================= -->
+    <property name="CONSOLE_PATTERN"
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{traceId} %logger{36} - %msg%n"/>
+
+    <!-- ========================= -->
+    <!-- Log path (portable) -->
+    <!-- ========================= -->
+    <property name="LOG_PATH" value="${LOG_PATH:-logs}"/>
+
+    <!-- ========================= -->
+    <!-- 3. Appenders -->
+    <!-- ========================= -->
+
+    <!-- Console -->
+    <appender name="CONSOLE"
+              class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- File -->
+    <appender name="FILE"
+              class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- active log file -->
+        <file>${LOG_PATH}/app.log</file>
+
+        <!-- daily rolling -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/app.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+    <!-- ========================= -->
+    <!-- 4. Root logger -->
+    <!-- ========================= -->
+    <root level="INFO">
+        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="FILE"/>
+    </root>
+
+    <!-- ========================= -->
+    <!-- 5. Framework noise control -->
+    <!-- ========================= -->
+    <logger name="org.springframework" level="WARN"/>
+    <logger name="org.hibernate" level="WARN"/>
+    <logger name="org.apache.catalina" level="WARN"/>
+
+    <!-- ========================= -->
+    <!-- 6. Your application -->
+    <!-- ========================= -->
+    <logger name="com.github.mybsam12138"
+            level="INFO"
+            additivity="false">
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+</configuration>
