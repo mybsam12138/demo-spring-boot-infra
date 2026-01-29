@@ -9,11 +9,13 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.UUID;
 
+import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 @Component
+@Slf4j
 public class RequestContextFilter extends OncePerRequestFilter {
 
     private static final String HEADER_TENANT_ID = "X-Tenant-Id";
@@ -35,7 +37,10 @@ public class RequestContextFilter extends OncePerRequestFilter {
             RequestContext.set(context);
             MDC.put("traceId",context.getTraceId());
             filterChain.doFilter(request, response);
-        } finally {
+        } catch (Throwable ex){
+            log.error("Request Context Filter error. ",ex);
+            throw ex;
+        }finally {
             MDC.clear();
             RequestContext.clear(); // MUST be in finally
         }
