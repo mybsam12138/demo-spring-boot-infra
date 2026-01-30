@@ -4,21 +4,18 @@
     <!-- ========================= -->
     <!-- 1. Spring properties -->
     <!-- ========================= -->
-    <springProperty scope="context"
-                    name="APP_NAME"
-                    source="spring.application.name"
-                    defaultValue="demo-app"/>
+    <springProperty scope="context" name="APP_NAME" source="spring.application.name" defaultValue="demo-app"/>
 
-    <springProperty scope="context"
-                    name="ACTIVE_PROFILE"
-                    source="spring.profiles.active"
-                    defaultValue="default"/>
+    <springProperty scope="context" name="ACTIVE_PROFILE" source="spring.profiles.active" defaultValue="default"/>
 
     <!-- ========================= -->
     <!-- 2. Log pattern -->
     <!-- ========================= -->
     <property name="CONSOLE_PATTERN"
               value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %X{traceId} %logger{36} - %msg%n"/>
+
+    <!-- API log pattern (concise, one-line) -->
+    <property name="API_LOG_PATTERN" value="%d{yyyy-MM-dd HH:mm:ss.SSS} %X{traceId} %msg%n"/>
 
     <!-- ========================= -->
     <!-- Log path (portable) -->
@@ -30,8 +27,7 @@
     <!-- ========================= -->
 
     <!-- Console -->
-    <appender name="CONSOLE"
-              class="ch.qos.logback.core.ConsoleAppender">
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>${CONSOLE_PATTERN}</pattern>
             <charset>UTF-8</charset>
@@ -39,8 +35,7 @@
     </appender>
 
     <!-- File -->
-    <appender name="FILE"
-              class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
 
         <!-- active log file -->
         <file>${LOG_PATH}/app.log</file>
@@ -53,6 +48,31 @@
 
         <encoder>
             <pattern>${CONSOLE_PATTERN}</pattern>
+            <charset>UTF-8</charset>
+        </encoder>
+    </appender>
+
+
+    <!-- ========================= -->
+    <!-- API log (separated) -->
+    <!-- ========================= -->
+
+    <appender name="API_FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+
+        <!-- active api log file -->
+        <file>${LOG_PATH}/api.log</file>
+
+        <!-- daily rolling, short retention -->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_PATH}/api.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>7</maxHistory>
+        </rollingPolicy>
+
+        <encoder>
+            <!-- API logs should be concise -->
+            <pattern>
+                ${API_LOG_PATTERN}
+            </pattern>
             <charset>UTF-8</charset>
         </encoder>
     </appender>
@@ -73,11 +93,17 @@
     <logger name="org.apache.catalina" level="WARN"/>
 
     <!-- ========================= -->
+    <!-- API log logger -->
+    <!-- ========================= -->
+    <logger name="API_LOG" level="INFO" additivity="false">
+        <appender-ref ref="API_FILE"/>
+        <appender-ref ref="CONSOLE"/>
+    </logger>
+
+    <!-- ========================= -->
     <!-- 6. Your application -->
     <!-- ========================= -->
-    <logger name="com.github.mybsam12138"
-            level="INFO"
-            additivity="false">
+    <logger name="com.github.mybsam12138" level="INFO" additivity="false">
         <appender-ref ref="CONSOLE"/>
     </logger>
 
