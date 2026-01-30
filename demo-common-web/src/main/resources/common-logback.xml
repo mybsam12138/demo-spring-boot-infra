@@ -52,7 +52,6 @@
         </encoder>
     </appender>
 
-
     <!-- ========================= -->
     <!-- API log (separated) -->
     <!-- ========================= -->
@@ -77,12 +76,38 @@
         </encoder>
     </appender>
 
+
+    <!-- ========================= -->
+    <!-- 3.1 Async wrappers -->
+    <!-- ========================= -->
+
+    <appender name="ASYNC_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>8192</queueSize>
+        <discardingThreshold>20</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="FILE"/>
+    </appender>
+
+    <appender name="ASYNC_CONSOLE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>2048</queueSize>
+        <discardingThreshold>20</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="CONSOLE"/>
+    </appender>
+
+    <appender name="ASYNC_API_FILE" class="ch.qos.logback.classic.AsyncAppender">
+        <queueSize>4096</queueSize>
+        <discardingThreshold>20</discardingThreshold>
+        <neverBlock>true</neverBlock>
+        <appender-ref ref="API_FILE"/>
+    </appender>
+
     <!-- ========================= -->
     <!-- 4. Root logger -->
     <!-- ========================= -->
     <root level="INFO">
-        <appender-ref ref="CONSOLE"/>
-        <appender-ref ref="FILE"/>
+        <appender-ref ref="ASYNC_CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
     </root>
 
     <!-- ========================= -->
@@ -96,15 +121,16 @@
     <!-- API log logger -->
     <!-- ========================= -->
     <logger name="API_LOG" level="INFO" additivity="false">
-        <appender-ref ref="API_FILE"/>
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_API_FILE"/>
+        <appender-ref ref="ASYNC_CONSOLE"/>
     </logger>
 
     <!-- ========================= -->
     <!-- 6. Your application -->
     <!-- ========================= -->
     <logger name="com.github.mybsam12138" level="INFO" additivity="false">
-        <appender-ref ref="CONSOLE"/>
+        <appender-ref ref="ASYNC_CONSOLE"/>
+        <appender-ref ref="ASYNC_FILE"/>
     </logger>
 
 </configuration>

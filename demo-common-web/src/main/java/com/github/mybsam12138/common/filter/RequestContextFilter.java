@@ -2,6 +2,8 @@ package com.github.mybsam12138.common.filter;
 
 import com.github.mybsam12138.common.context.RequestContext;
 import com.github.mybsam12138.common.context.RequestContextData;
+import com.github.mybsam12138.common.util.RequestUtils;
+import com.github.mybsam12138.common.util.TraceIdUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -30,8 +32,8 @@ public class RequestContextFilter extends OncePerRequestFilter {
 
         try {
             RequestContextData context = RequestContextData.builder()
-                    .traceId(generateTraceId())
-                    .clientIp(resolveClientIp(request))
+                    .traceId(TraceIdUtils.generate())
+                    .clientIp(RequestUtils.getClientIp(request))
                     .tenantId(tenantId)
                     .build();
             RequestContext.set(context);
@@ -46,15 +48,5 @@ public class RequestContextFilter extends OncePerRequestFilter {
         }
     }
 
-    private String generateTraceId() {
-        return UUID.randomUUID().toString();
-    }
 
-    private String resolveClientIp(HttpServletRequest request) {
-        String forwarded = request.getHeader("X-Forwarded-For");
-        if (forwarded != null && !forwarded.isBlank()) {
-            return forwarded.split(",")[0].trim();
-        }
-        return request.getRemoteAddr();
-    }
 }
