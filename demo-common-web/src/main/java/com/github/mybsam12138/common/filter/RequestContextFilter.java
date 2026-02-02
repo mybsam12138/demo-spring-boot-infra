@@ -2,14 +2,13 @@ package com.github.mybsam12138.common.filter;
 
 import com.github.mybsam12138.common.context.RequestContext;
 import com.github.mybsam12138.common.context.RequestContextData;
-import com.github.mybsam12138.common.util.RequestUtils;
-import com.github.mybsam12138.common.util.TraceIdUtils;
+import com.github.mybsam12138.common.util.staticutil.RequestUtils;
+import com.github.mybsam12138.common.util.staticutil.TraceIdUtils;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.MDC;

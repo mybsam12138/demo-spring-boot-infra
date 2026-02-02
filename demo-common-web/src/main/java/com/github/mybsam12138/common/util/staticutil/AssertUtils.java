@@ -1,4 +1,4 @@
-package com.github.mybsam12138.common.util;
+package com.github.mybsam12138.common.util.staticutil;
 
 import com.github.mybsam12138.common.exception.base.ErrorCode;
 import com.github.mybsam12138.common.exception.system.BizException;

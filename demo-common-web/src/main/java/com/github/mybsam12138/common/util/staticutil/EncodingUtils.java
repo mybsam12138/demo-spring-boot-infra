@@ -1,4 +1,4 @@
-package com.github.mybsam12138.common.util;
+package com.github.mybsam12138.common.util.staticutil;
 
 import java.nio.charset.StandardCharsets;
 
